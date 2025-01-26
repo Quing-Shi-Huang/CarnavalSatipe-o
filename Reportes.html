@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <button class="menu-toggle" onclick="toggleMenu()">☰ Menú</button>
+        <h2>Panel Administrativo</h2>
+        <nav class="menu">
+            <a href="Registro.html" class="menu-item">Registro de Auspiciadores</a>
+            <a href="Usuario.html" class="menu-item">Usuarios</a>
+            <a href="Reportes.html" class="menu-item">Reportes</a>
+            <a href="Configuraciones.html" class="menu-item">Configuraciones</a>
+            <a href="CerrarSesion.html" class="menu-item">Cerrar Sesión</a>
+        </nav>
+    </div>
+    <div class="content">
+        <h1>Reportes</h1>
+        <p>Sección para consultar y generar reportes.</p>
+    </div>
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
