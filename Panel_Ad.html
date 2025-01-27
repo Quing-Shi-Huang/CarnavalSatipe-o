@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrativo</title>
+    <link rel="stylesheet" href="Panel_Ad.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="sidebar">
+        <button class="menu-toggle" onclick="toggleMenu()">☰ Menú</button>
+        <h2>Panel Administrativo</h2>
+        <nav class="menu">
+            <a href="Registro.html" class="menu-item">Ver Formulario</a>
+            <a href="index.html" class="menu-item">Ver Inicio</a>
+        </nav>
+    </div>
+    <div class="content">
+        <h1>Listado de Auspiciadores</h1>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo Electrónico</th>
+                        <th>Teléfono</th>
+                        <th>Logo</th>
+                        <th>Publicación</th> <!-- Nueva columna de publicación -->
+                        <th>Acciones</th> <!-- Nueva columna para editar, eliminar y publicar -->
+                    </tr>
+                </thead>
+                <tbody id="tabla-auspiciadores">
+                    <!-- Los datos serán cargados dinámicamente aquí -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('active');
+        }
+
+        // Función para editar auspiciador
+        function editarAuspiciador(index) {
+            const sponsor = sponsors[index];
+            const nuevoNombre = prompt('Editar nombre:', sponsor.nombre);
+            const nuevoEmail = prompt('Editar correo electrónico:', sponsor.email);
+            const nuevoTelefono = prompt('Editar teléfono:', sponsor.telefono);
+            
+            if (nuevoNombre && nuevoEmail && nuevoTelefono) {
+                sponsors[index] = {
+                    ...sponsor,
+                    nombre: nuevoNombre,
+                    email: nuevoEmail,
+                    telefono: nuevoTelefono
+                };
+                localStorage.setItem('sponsors', JSON.stringify(sponsors));
+                location.reload(); // Recarga la página para mostrar los cambios
+            }
+        }
+
+        // Función para eliminar auspiciador
+        function eliminarAuspiciador(index) {
+            const confirmacion = confirm('¿Estás seguro de que deseas eliminar este auspiciador?');
+            if (confirmacion) {
+                sponsors.splice(index, 1);
+                localStorage.setItem('sponsors', JSON.stringify(sponsors));
+                location.reload(); // Recarga la página para reflejar la eliminación
+            }
+        }
+
+        // Función para publicar auspiciador
+        function publicarAuspiciador(index) {
+            const sponsor = sponsors[index];
+            sponsor.publicado = !sponsor.publicado; // Alterna el estado de publicación
+
+            // Actualiza el estado en el localStorage
+            localStorage.setItem('sponsors', JSON.stringify(sponsors));
+            location.reload(); // Recarga la página para reflejar el cambio
+        }
+
+        // Cargar datos de los auspiciadores desde localStorage
+        const tablaAuspiciadores = document.getElementById('tabla-auspiciadores');
+        const sponsors = JSON.parse(localStorage.getItem('sponsors')) || [];
+        sponsors.forEach((sponsor, index) => {
+            const fila = document.createElement('tr');
+            fila.innerHTML = `
+                <td>${sponsor.nombre}</td>
+                <td>${sponsor.email}</td>
+                <td>${sponsor.telefono}</td>
+                <td>
+                    ${sponsor.logo ? `<img src="${sponsor.logo}" alt="Logo" class="logo">` : 'Sin Logo'}
+                </td>
+                <td>
+                    <button onclick="publicarAuspiciador(${index})">
+                        ${sponsor.publicado ? 'Despublicar' : 'Publicar'}
+                    </button>
+                </td>
+                <td>
+                    <button onclick="editarAuspiciador(${index})">Editar</button>
+                    <button onclick="eliminarAuspiciador(${index})">Eliminar</button>
+                </td>
+            `;
+            tablaAuspiciadores.appendChild(fila);
+        });
+    </script>
+</body>
+</html>
