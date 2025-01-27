@@ -8,7 +8,7 @@
 
 /* Fondo de la página */
 body {
-    background: url(img/AFICHE-CARNAVAL-SATIPEÑO-2025.png) no-repeat center center fixed;
+    background: url(AFICHE-CARNAVAL-SATIPEÑO-2025.png) no-repeat center center fixed;
     background-size: cover;
     height: 100vh;
     display: flex;
