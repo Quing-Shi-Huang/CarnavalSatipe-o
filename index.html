@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador Regresivo - El Carnaval Satipeño</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="seccion seccion-1">
+        <div class="carrusel">
+            <img class="imagen-carrusel" src="img/PORTADA.jpg" alt="Imagen 1">
+            <img class="imagen-carrusel" src="img/AFICHE-CARNAVAL-SATIPEÑO-2025.png" alt="Imagen 2">
+        </div>
+
+        <div class="contador">
+            <h1>El Carnaval Satipeño falta:</h1>
+            <div id="cuenta-regresiva">
+                <div class="unidad">
+                    <span id="dias">00</span>
+                    <span>Días</span>
+                </div>
+                <div class="unidad">
+                    <span id="horas">00</span>
+                    <span>Horas</span>
+                </div>
+                <div class="unidad">
+                    <span id="minutos">00</span>
+                    <span>Minutos</span>
+                </div>
+                <div class="unidad">
+                    <span id="segundos">00</span>
+                    <span>Segundos</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="botones">
+            <a href="#" class="boton intranet">Intranet</a>
+        </div>
+        <div class="boton-registrarse">
+            <a href="Registro.html" class="boton registrarse">Registrarse</a>
+        </div>
+    </div>
+
+    <div class="seccion-2">
+        <h2>Nuestros Auspiciadores Son:</h2>
+        <div id="tarjetas-container" class="container__cards"></div>
+        <div class="carousel-buttons">
+            <button id="prev-btn" class="carousel-button">◀</button>
+            <button id="next-btn" class="carousel-button">▶</button>
+        </div>
+    </div>
+
+    <!-- Formulario de Login (Oculto inicialmente) -->
+    <div id="login-form-container" class="login-form-container">
+        <div class="login-form">
+            <h2>Iniciar sesión</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Usuario:</label>
+                    <input type="text" id="username" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password">
+                </div>
+                <button type="submit">Ingresar</button>
+                <button type="button" id="close-login-form">Cerrar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            const sponsors = JSON.parse(localStorage.getItem('sponsors')) || [];
+            const tarjetasContainer = document.getElementById('tarjetas-container');
+
+            sponsors.forEach(sponsor => {
+                if (sponsor.publicado) {
+                    const tarjeta = document.createElement('div');
+                    tarjeta.classList.add('card');
+                    tarjeta.innerHTML = 
+                        `<div class="cover__card">
+                            ${sponsor.logo ? `<img src="${sponsor.logo}" alt="Logo">` : '<p>No logo</p>'}
+                        </div>
+                        <div class="card-info">
+                            <h3>${sponsor.nombre}</h3>
+                            <p><strong>Correo:</strong> ${sponsor.email}</p>
+                            <p><strong>Teléfono:</strong> ${sponsor.telefono}</p>
+                        </div>
+                        <div class="footer__card">
+                            <h4>Publicado</h4>
+                            <i>${sponsor.publicado ? 'Sí' : 'No'}</i>
+                        </div>`;
+                    tarjetasContainer.appendChild(tarjeta);
+                }
+            });
+
+        };
+    </script>
+
+    <script src="script.js"></script>
+    <script src="script2.js"></script>
+</body>
+
+</html>

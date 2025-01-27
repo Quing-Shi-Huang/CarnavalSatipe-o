@@ -1,0 +1,180 @@
+/* Reset general de márgenes y paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Fondo de la página */
+body {
+    background: url(img/AFICHE-CARNAVAL-SATIPEÑO-2025.png) no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Sección principal */
+section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Contenedor del formulario */
+.container {
+    max-width: 460px;
+    width: 100%;
+    background: rgba(21, 21, 22, 0.8);
+    border-radius: 10px;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+/* Formulario */
+.form {
+    width: 100%;
+    text-align: center;
+    color: #ecf0ee;
+}
+
+.form h2 {
+    color: #b5e446;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.form h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 80px;
+    height: 4px;
+    background: #fff;
+}
+
+/* Estilo de los campos de entrada */
+.form .inputBox {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.form .inputBox input {
+    width: 86%;
+    background: rgba(225, 255, 255, 0.2);
+    border: 1px solid rgba(225, 255, 255, 0.5);
+    padding: 10px 20px;
+    border-radius: 35px;
+    font-size: 16px;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    outline: none;
+}
+
+.form .inputBox input::placeholder {
+    color: #fcf7f7;
+}
+
+/* Estilo del botón de submit */
+.form .inputBox input[type="submit"] {
+    background: #fff;
+    color: #666;
+    max-width: 200px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-weight: 600;
+    border-radius: 35px;
+}
+
+.form .inputBox input[type="submit"]:hover {
+    background: #e91426;
+    color: #f1ecec;
+}
+
+/* Estilo del botón de regresar */
+.form .inputBox button {
+    width: 100%;
+    text-align: center;
+    padding: 14px 10px;
+    border-radius: 50px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.form .inputBox button:hover {
+    background: #e91426;
+    color: #f1ecec;
+}
+
+/* MEDIA QUERIES PARA ADAPTABILIDAD */
+
+/* Dispositivos de hasta 768px */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .form h2 {
+        font-size: 20px;
+    }
+
+    .form .inputBox input {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+
+    .form .inputBox input[type="submit"] {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .form .inputBox button {
+        font-size: 14px;
+        padding: 12px;
+    }
+}
+
+/* Dispositivos de hasta 480px */
+@media (max-width: 480px) {
+    .container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .form {
+        padding: 20px;
+    }
+
+    .form h2 {
+        font-size: 18px;
+    }
+
+    .form .inputBox input {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+
+    .form .inputBox input[type="submit"] {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+
+    .form .inputBox button {
+        font-size: 14px;
+        padding: 12px;
+    }
+}
